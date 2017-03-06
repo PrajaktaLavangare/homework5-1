@@ -7,31 +7,31 @@
             <th>Name</th>
             <th>&nbsp;</th>
         </tr>        
+        
+	<!-- add category rows here -->
+  <?php foreach ($categories as $category) : ?>
+         <tr>
+	        <td><?php echo $category['categoryName']; ?></td>
+	        <td><form action="index.php" method="post">
+	        <input type="hidden" name="category_id" value="<?php echo $category['categoryID']; ?>">
+	        <input type="submit" value="Delete">
+	        <input type="hidden" name="action" value= "delete_category">
+	        </form>
+	        </td>
+	        </tr> 
+	        <?php endforeach; ?>
 
-     <?php foreach ($categories as $category) : ?>
-     <tr>
-
-      <td><?php echo $category['categoryName']; ?></td>
-      <td><form action="delete_category.php" method="post">
-          <input type="hidden" name="category_id"
-	         value="<?php echo $category['category_id']; ?>">
-	   <input type="submit" value="Delete">
-	   </form>
-       </td>
-       </tr>
-	   <?php endforeach; ?>	
 
     </table>
 
     <h2>Add Category</h2>
-    <form action="index.php" method="post"
-      id="add_category_form">
-
-      <label>Name:</label>
-      <input type= "hidden" name="action" value="add_category">
-      <input type="text" name="name">
-      <input type="submit" value="Add"></br>
-      </form>
+    
+    <form action="" method="post" id="add_category_form"> 
+    <label> Name: </label>
+    <input type = "hidden" name="action" value="add_category">
+    <input type="text" name="name">
+    <input type="submit" value="add"><br>
+    </form>
 
     <p><a href="index.php?action=list_products">List Products</a></p>
 

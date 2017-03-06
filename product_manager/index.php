@@ -42,6 +42,30 @@ if ($action == 'list_products') {
   $categories = get_categories();
   include('category_list.php');
 
+} else if ($action =='add_category') {
+$name = filter_input(INPUT_POST, 'name');
+
+if ($name == NULL || $name ==FALSE) {
+ $error = 'Please provide a name';
+ include('../errors/error.php');
+} else {
+
+ add_category($name);
+ header("Location: .?action=list_categories");
+}
+} else if ($action =='delete_category') {
+ $category_id = filter_input(INPUT_POST, 'category_id');
+
+if ($category_id == NULL || $category_id == FALSE) {
+$error = 'Missing Category ID';
+include('../errors/error.php');
+
+} else {
+ delete_category($category_id);
+header("Location: .?action=list_categories");
+
+}
+
 } else if ($action == 'add_product') {
     $category_id = filter_input(INPUT_POST, 'category_id', 
             FILTER_VALIDATE_INT);
